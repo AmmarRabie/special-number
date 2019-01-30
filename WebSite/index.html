@@ -3,7 +3,10 @@
 
 
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
 
 	<style>
 		.mycard{
@@ -37,6 +40,8 @@
 	</style>
 
  	<title>Special Numbers</title>
+
+  <script src="script.js"></script>
 </head>
 
 
@@ -70,10 +75,10 @@
           نوع التميز
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">VIP</a>
-          <a class="dropdown-item" href="#">مميزة</a>
+          <a class="dropdown-item" onclick="vipOnly()">VIP</a>
+          <a class="dropdown-item" onclick="specialOnly()">مميزة</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">الكل</a>
+          <a class="dropdown-item" onclick="vipAndSpecial()">الكل</a>
         </div>
     </ul>
 
