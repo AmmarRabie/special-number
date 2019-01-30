@@ -64,8 +64,9 @@
 			color: white;
 		}
 
-		tr{
-			color: white;
+		a:hover{
+			color: black;
+			text-decoration: none;
 		}
 
 	</style>
@@ -106,10 +107,9 @@
           نوع التميز
         </a>
         <div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" onclick="vipOnly()">VIP</a>
-          <a class="dropdown-item" onclick="specialOnly()">مميزة</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" onclick="vipAndSpecial()">الكل</a>
+          <a class="dropdown-item" style="color: white;" onclick="vipOnly()">VIP</a>
+          <a class="dropdown-item" style="color: white;" onclick="specialOnly()">مميزة</a>
+          <a class="dropdown-item" style="color: white;" onclick="vipAndSpecial()">الكل</a>
         </div>
     </ul>
 
@@ -203,6 +203,7 @@
     </div>
   </div>
 </div>
+
 
 
 
