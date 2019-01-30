@@ -10,15 +10,15 @@
 
 	<style>
 		.mycard{
-			width: 17rem; 
+			width: 18rem; 
 			margin-top: 20px; 
 			padding-top: 15px; 
 			padding-bottom: 15px;
-			background-color: lightblue;
+			background-color:#649600;
 		}
 
 		.navcolor{
-			background-color: lightblue;
+			background-color:steelblue;
 		}
 
 		.footer {
@@ -26,15 +26,46 @@
 		   left: 0;
 		   bottom: 0;
 		   width: 100%;
-		   background-color: lightblue;
 		   color: black;
 		   text-align: center;
-		   height: 40px;
+		   height: 45px;
 		}
 
 		.scrollitem{
 			overflow-y: auto;
-			padding-bottom: 45px;
+			padding-bottom: 55px;
+		}
+
+		.vodafone{
+			background-color: #c80000;
+		}
+
+		.etisalat{
+			background-color: #649600;
+		}
+
+		.mobinil{
+			background-color: #fa5000!important;
+		}
+
+		.we{
+			background-color: #781e82; 
+		}
+
+		a{
+			color: white;
+		}
+
+		h5{
+			color: white;
+		}
+
+		p{
+			color: white;
+		}
+
+		tr{
+			color: white;
 		}
 
 	</style>
@@ -49,7 +80,7 @@
 <body>
 
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light navcolor pt-4 pb-4">
 
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     		<span class="navbar-toggler-icon"></span>
@@ -59,22 +90,22 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item active">
-        <a class="nav-link ml-5" href="#">Orange اورانج</a>
+        <a class=" ml-5" href="#">Orange اورانج</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link ml-5" href="#">Etisalat اتصالات</a>
+        <a class=" ml-5" href="#">Etisalat اتصالات</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link ml-5" href="#">Vodafone فودافون</a>
+        <a class=" ml-5" href="#">Vodafone فودافون</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link ml-5" href="#">We وى</a>
+        <a class=" ml-5" href="#">We وى</a>
       </li>
       <li class="nav-item dropdown ml-5">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           نوع التميز
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" onclick="vipOnly()">VIP</a>
           <a class="dropdown-item" onclick="specialOnly()">مميزة</a>
           <div class="dropdown-divider"></div>
@@ -82,15 +113,15 @@
         </div>
     </ul>
 
-    <a class="navbar-brand form-inline my-2 my-lg-0 mr-5" href="#">أرقام مميزة</a>
+    <a class="form-inline my-2 my-lg-0 mr-5" href="#">أرقام مميزة</a>
   </div>
 </nav>
 
 
-<div class="container scrollitem">
+<div class="container-fluid scrollitem">
   <div class="row">
     <div class="col-sm">
-      	<div class="card mx-auto mycard">
+    <div class="card mx-auto mycard">
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
 		<div class="card mx-auto mycard">
@@ -163,14 +194,20 @@
 		<div class="card mx-auto mycard">
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
+		<div class="card mx-auto mycard">
+		  <h5 class="mx-auto">01282687520</h5>
+		</div>
+		<div class="card mx-auto mycard">
+		  <h5 class="mx-auto">01282687520</h5>
+		</div>
     </div>
   </div>
 </div>
 
 
 
-<div class="footer ">
-  <p style="vertical-align: middle;">للإستعلام برجاء التواصل على: 01282687520</p>
+<div class="footer navcolor pt-2">
+  <p>للإستعلام برجاء التواصل على: 01282687520</p>
 </div>
 
 
