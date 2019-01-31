@@ -9,9 +9,13 @@ firebase.initializeApp(config);
 let database = firebase.database();
 let activeCompany = 'Etisalat' // one of Etisalat, Vodafone, We, Orange
 let activeFilter = 'all' // one of vip, special, all
+const highlight = "yellow"
 
 
 async function update(){
+    resetAnchColors()
+    changeAnchorColor()
+    setSpeciality()
     let numbers = []
     if(activeFilter === "all"){
         const nsList = [await fetchPhoneNumbers(activeCompany, 'vip'), await fetchPhoneNumbers(activeCompany, 'special')]
@@ -32,6 +36,8 @@ function setActiveCompany(who){
     activeCompany = who
     update()
 }
+
+
 
 function writeNumber(number){
     const provider = number.substring(0,3)
@@ -75,6 +81,37 @@ function displayNumbers(numbers){
         columns[currentCol].innerHTML += numberElementString(number)
         currentCol = (currentCol + 1) % 3
     })
+}
+
+
+function resetAnchColors(){
+    document.getElementById("weAnchor").style.color = "white";
+    document.getElementById("vodafoneAnchor").style.color = "white";
+    document.getElementById("orangeAnchor").style.color = "white";
+    document.getElementById("etisalatAnchor").style.color = "white";
+}
+
+function changeAnchorColor(){
+    if (activeCompany == "Orange")
+        document.getElementById("orangeAnchor").style.color = highlight;
+    else if (activeCompany == "Etisalat")
+        document.getElementById("etisalatAnchor").style.color = highlight;
+    else if (activeCompany == "Vodafone")
+        document.getElementById("vodafoneAnchor").style.color = highlight;
+    else
+        document.getElementById("weAnchor").style.color = highlight;
+}
+
+
+function setSpeciality(){
+    let speciality = "نوع التميز - الكل"
+
+    if(activeFilter == "vip")
+        speciality = "VIP - نوع التميز"
+    else if (activeFilter == "special")
+        speciality = "نوع التميز - مميزة"
+
+    document.getElementById("navbarDropdown").innerHTML = speciality
 }
 
 
