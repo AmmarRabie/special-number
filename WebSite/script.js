@@ -7,18 +7,33 @@ var config = {
 firebase.initializeApp(config);
 
 let database = firebase.database();
-let activeCompany = 'E' // one of Etisalat, Vodafone, We, Orange
-let activeFilter = 'vip' // one of vip, special, all
+let activeCompany = 'Etisalat' // one of Etisalat, Vodafone, We, Orange
+let activeFilter = 'all' // one of vip, special, all
 
-function writeUserData(userId, name, email, imageUrl) {
-    firebase.database().ref('users/' + userId).set({
-      username: name,
-      email: email,
-      profile_picture : imageUrl
-    });
-  }
 
-function writeNumber(number) {
+async function update(){
+    let numbers = []
+    if(activeFilter === "all"){
+        const nsList = [await fetchPhoneNumbers(activeCompany, 'vip'), await fetchPhoneNumbers(activeCompany, 'special')]
+        const flatten = n => numbers.push(n)
+        nsList.forEach(ns => ns.forEach(flatten))
+    } else {
+        numbers = await fetchPhoneNumbers(activeCompany, activeFilter)
+    }
+    displayNumbers(numbers)
+}
+
+function setActiveFilter(who){
+    activeFilter = who
+    update()
+}
+
+function setActiveCompany(who){
+    activeCompany = who
+    update()
+}
+
+function writeNumber(number){
     const provider = number.substring(0,3)
     console.log(provider);
     const providerMatcher = {'011': 'T_Etisalat', '015': 'T_We', '010': 'T_Vodafone', '012': 'T_Orange'}
@@ -29,7 +44,7 @@ function writeNumber(number) {
 }
 
 
-async function getPhoneNumbers(company, type){
+async function fetchPhoneNumbers(company, type){
     let availableNumbers = []
     phonesSH = await database.ref(`/T_${company}-${type}`).once('value')
     phonesSH.forEach(phoneSH => {
@@ -43,57 +58,9 @@ async function getPhoneNumbers(company, type){
     return availableNumbers
 }
 
-function vipOnly(){
-    writeUserData(123, 'ammar', 'ammaralsayed55@gmail.com', 'https://avatars1.githubusercontent.com/u/23727296?s=460&v=4')
-    writeUserData('5wab', 'omar samir', 'omarsamir@gmail.com', 'https://avatars1.githubusercontent.com/u/23727296?s=460&v=4')
-}
-
-async function setActiveFilter(who){
-    // writeRandomNumbers(5, 10)
-    // const numbers = await getPhoneNumbers('Etisalat', 'vip')
-    // displayNumbers(numbers)
-    activeFilter = who
-    const numbers = []
-    if(activeFilter === "all"){
-        const p1 = getPhoneNumbers(activeCompany, 'vip')
-        const p2 = getPhoneNumbers(activeCompany, 'special')
-        const listNumbers = await Promise.all(p1, p2)
-        numbers.push(listNumbers[0],listNumbers[1])
-    }
-    else{
-        numbers = await getPhoneNumbers(activeCompany, activeFilter)
-    }
-    displayNumbers(numbers)
-}
-
-async function setActiveCompany(who){
-    activeCompany = who
-    const numbers = await getPhoneNumbers(activeCompany, activeFilter)
-    displayNumbers(numbers)
-
-
-    document.getElementById("navbar").classList.remove('o','w','e','v', 'bg-light')
-    document.getElementById("navbar").classList.add(who)
-}
-
-function vipAndSpecial(){
-    const numbers = getFakeNumbers(40,80)
-    return displayNumbers(numbers)
-    let columns = []
-    for(let i = 1; i <= 3; i++){
-        columns.push(document.getElementById(`col${i}`))
-        columns[i - 1].innerHTML = ''
-    }
-    let currentCol = 0
-    numbers.forEach(number => {
-        columns[currentCol].innerHTML += numberElementString(number)
-        currentCol = (currentCol + 1) % 3
-    })
-}
 
 function numberElementString(number){
-    s = `<div class="card mx-auto mycard"><h5 class="mx-auto">${number}</h5></div>`
-    return s
+    return `<div class="card mx-auto mycard ${activeCompany}"><h5 class="mx-auto">${number}</h5></div>`
 }
 
 
@@ -110,6 +77,10 @@ function displayNumbers(numbers){
     })
 }
 
+
+
+
+// testing purpose
 function getFakeNumbers(min, max){
     const count = Math.floor(Math.random() * (max - min)) + min;
     let numbers = []
@@ -124,17 +95,7 @@ function getFakeNumbers(min, max){
     return numbers
 }
 
-
 function writeRandomNumbers(min, max){
     numbers = getFakeNumbers(min, max)
     numbers.forEach(writeNumber)
-}
-
-var appConfig = {
-    companyColors: {
-        'o': '#006699',
-        'e': '#446699',
-        'w': '#123456',
-        'v': '#789456',
-    },
 }

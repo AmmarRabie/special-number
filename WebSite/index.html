@@ -36,19 +36,19 @@
 			padding-bottom: 55px;
 		}
 
-		.vodafone{
+		.Vodafone{
 			background-color: #c80000;
 		}
 
-		.etisalat{
+		.Etisalat{
 			background-color: #649600;
 		}
 
-		.mobinil{
+		.Orange{
 			background-color: #fa5000!important;
 		}
 
-		.we{
+		.We{
 			background-color: #781e82; 
 		}
 
@@ -91,25 +91,25 @@
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item active">
-        <a class=" ml-5" href="#">Orange اورانج</a>
+        <a class="ml-5" onclick="setActiveCompany('Orange')" href="#">Orange اورانج</a>
       </li>
       <li class="nav-item">
-        <a class=" ml-5" href="#">Etisalat اتصالات</a>
+        <a class="ml-5" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
       </li>
       <li class="nav-item">
-        <a class=" ml-5" href="#">Vodafone فودافون</a>
+        <a class="ml-5" onclick="setActiveCompany('Vodafone')" href="#">Vodafone فودافون</a>
       </li>
       <li class="nav-item">
-        <a class=" ml-5" href="#">We وى</a>
+        <a class="ml-5" onclick="setActiveCompany('We')" href="#">We وى</a>
       </li>
       <li class="nav-item dropdown ml-5">
         <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           نوع التميز
         </a>
         <div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" style="color: white;" onclick="vipOnly()">VIP</a>
-          <a class="dropdown-item" style="color: white;" onclick="specialOnly()">مميزة</a>
-          <a class="dropdown-item" style="color: white;" onclick="vipAndSpecial()">الكل</a>
+          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('vip')">VIP</a>
+          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('special')">مميزة</a>
+          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('all')">الكل</a>
         </div>
     </ul>
 
@@ -120,10 +120,10 @@
 
 <div class="container-fluid scrollitem">
   <div class="row">
-    <div class="col-sm">
-    <div class="card mx-auto mycard">
-		  <h5 class="mx-auto">01282687520</h5>
-		</div>
+    <div class="col" id='col1'>
+			<div class="card mx-auto mycard">
+				<h5 class="mx-auto">01282687520</h5>
+			</div>
 		<div class="card mx-auto mycard">
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
@@ -143,7 +143,7 @@
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>			
     </div>
-    <div class="col-sm">
+    <div class="col" id='col2'>
       	<div class="card mx-auto mycard">
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
@@ -166,7 +166,7 @@
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
     </div>
-    <div class="col-sm">
+    <div class="col" id='col3'>
       	<div class="card mx-auto mycard">
 		  <h5 class="mx-auto">01282687520</h5>
 		</div>
