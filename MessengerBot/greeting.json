@@ -1,0 +1,10 @@
+{
+"greeting":[
+  {
+    "locale":"default",
+    "text":"أهلا و سهلا{{user_first_name}}"
+  	
+  }
+    
+]
+}
