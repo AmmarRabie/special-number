@@ -31,6 +31,10 @@
 		   height: 45px;
 		}
 
+		.drop-item{
+			margin-left: 10px;
+		}
+
 		.scrollitem{
 			overflow-y: auto;
 			padding-bottom: 55px;
@@ -45,11 +49,57 @@
 		}
 
 		.Orange{
-			background-color: #fa5000!important;
+			background-color: #fa5000;
 		}
 
 		.We{
 			background-color: #781e82; 
+		}
+
+
+		.facebook_page {
+		    position: fixed;
+		    right: 45px;
+		    bottom: 45px;
+		    width: 40px;
+				opacity: 0.8;
+		}
+
+
+		.logo {
+		    position: absolute;
+		    right: 45px;
+		    top: 9px;
+		    width: 45px;
+		}
+
+		.logo-text
+		{
+			position: absolute;
+		  right: 110px;
+		  top: 23px;
+		  width: auto;
+		}
+
+		/* img {
+				max-width: 100%;
+				max-height: 100%;
+		} */
+
+		.card {
+			position:relative;
+		}
+			
+		.card .card-badge {
+			position:absolute;
+			top:-10px;
+			left:-20px;
+			padding:5px;
+			background:darkslategrey;
+			color:white;
+			transform:rotate(-30deg);
+			/* height: 50px;
+			width: 50px; */
 		}
 
 		a{
@@ -65,54 +115,54 @@
 		}
 
 		a:hover{
-			color: black;
-			text-decoration: none;
+			color: black !important;
+			text-decoration: none !important;
 		}
 
 	</style>
 
  	<title>Special Numbers</title>
 
-  <script src="script.js"></script>
 </head>
 
 
 
-<body onload="update()">
+<body onload="setContactInfo();update();">
 
 <nav class="navbar navbar-expand-lg navbar-light navcolor pt-4 pb-4">
 
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" style="color: white;" aria-label="Toggle navigation">
+    		<span class="navbar-toggler-icon"></span> القائمة الرئيسية
   		</button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item active">
-        <a class="ml-5" onclick="setActiveCompany('Orange')" href="#">Orange اورانج</a>
+        <a class="ml-5" id="orangeAnchor" onclick="setActiveCompany('Orange')" href="#">Orange اورانج</a>
       </li>
       <li class="nav-item">
-        <a class="ml-5" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
+        <a class="ml-5" id="etisalatAnchor" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
       </li>
       <li class="nav-item">
-        <a class="ml-5" onclick="setActiveCompany('Vodafone')" href="#">Vodafone فودافون</a>
+        <a class="ml-5" id="vodafoneAnchor" onclick="setActiveCompany('Vodafone')" href="#">Vodafone فودافون</a>
       </li>
       <li class="nav-item">
-        <a class="ml-5" onclick="setActiveCompany('We')" href="#">We وى</a>
+        <a class="ml-5" id="weAnchor" onclick="setActiveCompany('We')" href="#">We وى</a>
       </li>
       <li class="nav-item dropdown ml-5">
         <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          نوع التميز
+          نوع التميز - الكل
         </a>
         <div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('vip')">VIP</a>
-          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('special')">مميزة</a>
-          <a class="dropdown-item" style="color: white;" onclick="setActiveFilter('all')">الكل</a>
+        	<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('vip')">VIP</a>
+			<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('special')">مميزة</a>
+			<div class="dropdown-divider"></div>
+        	<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('all')">الكل</a>
         </div>
     </ul>
 
-    <a class="form-inline my-2 my-lg-0 mr-5" href="#">أرقام مميزة</a>
+    <!-- <a class="form-inline my-2 my-lg-0" style="margin-right: 100px" href="index.html">أرقام مميزة</a> -->
   </div>
 </nav>
 
@@ -126,10 +176,30 @@
 </div>
 
 
+<div class="logo">
+	<a href="index.html">
+			<img src="logo.png" height="60px">
+	</a>
+</div>
+
+<div class="logo-text">
+	<a class="form-inline my-2 my-lg-0" href="index.html">أرقام مميزة</a>
+</div>
+
+
+
+
+<div class="facebook_page">
+    <a target="_blank" href="#">
+        <img src="facebook.png" height="80px">
+    </a>
+</div>
+
+
 
 
 <div class="footer navcolor pt-2">
-  <p>للإستعلام برجاء التواصل على: 01282687520</p>
+  <p id="contact_info">للإستعلام برجاء التواصل على: 01282687520</p>
 </div>
 
 
@@ -139,6 +209,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="script.js"></script>
 
 </body>
 
