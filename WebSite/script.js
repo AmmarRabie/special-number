@@ -9,7 +9,7 @@ firebase.initializeApp(config);
 let database = firebase.database();
 let activeCompany = 'Etisalat' // one of Etisalat, Vodafone, We, Orange
 let activeFilter = 'all' // one of vip, special, all
-const highlight = "yellow"
+const highlight = "gold"
 
 contactInfo = {
     phone: '01000000140',
@@ -81,14 +81,14 @@ function vipNumberClarify(isVip){
 
 function displayNumbers(numbers){
     let columns = []
-    for(let i = 1; i <= 3; i++){
+    for(let i = 1; i <= 2; i++){
         columns.push(document.getElementById(`col${i}`))
         columns[i - 1].innerHTML = ''
     }
     let currentCol = 0
     numbers.forEach(number => {
         columns[currentCol].innerHTML += numberElementString(number)
-        currentCol = (currentCol + 1) % 3
+        currentCol = (currentCol + 1) % 2
     })
 }
 
