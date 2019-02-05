@@ -9,7 +9,7 @@ firebase.initializeApp(config);
 let database = firebase.database();
 let activeCompany = 'Etisalat' // one of Etisalat, Vodafone, We, Orange
 let activeFilter = 'all' // one of vip, special, all
-const highlight = "yellow"
+const highlight = "gold"
 
 
 async function update(){
