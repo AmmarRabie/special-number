@@ -28,6 +28,7 @@ async function update(){
         numbers = await fetchPhoneNumbers(activeCompany, activeFilter)
     }
     displayNumbers(numbers)
+    document.getElementById('speciality_div').scrollIntoView();
 }
 
 function setActiveFilter(who){
@@ -113,14 +114,14 @@ function changeAnchorColor(){
 
 
 function setSpeciality(){
-    let speciality = "نوع التميز - الكل"
+    let speciality = "الــكل"
 
     if(activeFilter == "vip")
-        speciality = "VIP - نوع التميز"
+        speciality = "VIP"
     else if (activeFilter == "special")
-        speciality = "نوع التميز - مميزة"
+        speciality = "ممــيزة"
 
-    document.getElementById("navbarDropdown").innerHTML = speciality
+    document.getElementById("speciality").innerHTML = speciality
 }
 
 async function setContactInfo(){
