@@ -62,14 +62,14 @@
 		    right: 45px;
 		    bottom: 45px;
 		    width: 40px;
-				opacity: 0.8;
+			opacity: 0.8;
 		}
 
 
 		.logo {
 		    position: absolute;
 		    right: 45px;
-		    top: 9px;
+		    top: 7px;
 		    width: 45px;
 		}
 
@@ -77,7 +77,7 @@
 		{
 			position: absolute;
 		  right: 110px;
-		  top: 23px;
+		  top: 12px;
 		  width: auto;
 		}
 
@@ -117,71 +117,136 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
 
+
+			<li class="nav-item dropdown ml-5">
+					<a class=" dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						اتصل بنا
+					</a>
+					<div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
+	
+							<div class="row">
+									<img class="col-4" src="facebook.png" height="40px" width="40px">
+									<a class="dropdown-item col-8" style="color: white;" target="_blank" href="https://www.facebook.com/%D9%86%D9%85%D8%B1%D8%AA%D9%89-Vip-244221292385859/">facebook</a>
+							</div>
+						
+							<div class="row">
+									<img class="col-4" src="whatsapp.png" height="40px" width="40px">
+									<a class="dropdown-item col-8" style="color: white;" target="_blank" href="https://api.whatsapp.com/send?phone=201000000140&text=&source=&data=">whatsapp</a>
+							</div>
+					</div>
+				</li>
+
+
+			<li class="nav-item dropdown ml-5">
+					<a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						نوع التميز - الكل
+					</a>
+					<div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('vip')">VIP</a>
+						<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('special')">مميزة</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('all')">الكل</a>
+					</div>
+				</li>
+
       <li class="nav-item active">
         <a class="ml-5" id="orangeAnchor" onclick="setActiveCompany('Orange')" href="#">Orange اورانج</a>
-      </li>
-      <li class="nav-item">
-        <a class="ml-5" id="etisalatAnchor" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
-      </li>
+			</li>
+			
+			
       <li class="nav-item">
         <a class="ml-5" id="vodafoneAnchor" onclick="setActiveCompany('Vodafone')" href="#">Vodafone فودافون</a>
-      </li>
+			</li>
+			
       <li class="nav-item">
         <a class="ml-5" id="weAnchor" onclick="setActiveCompany('We')" href="#">We وى</a>
-      </li>
-      <li class="nav-item dropdown ml-5">
-        <a class=" dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          نوع التميز - الكل
-        </a>
-        <div class="dropdown-menu navcolor" aria-labelledby="navbarDropdown">
-        	<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('vip')">VIP</a>
-			<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('special')">مميزة</a>
-			<div class="dropdown-divider"></div>
-        	<a class="dropdown-item" style="color: white;" onclick="setActiveFilter('all')">الكل</a>
-        </div>
+			</li>
+
+			<li class="nav-item">
+					<a class="ml-5" id="etisalatAnchor" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
+			</li>
+
     </ul>
 
-    <!-- <a class="form-inline my-2 my-lg-0" style="margin-right: 100px" href="index.html">أرقام مميزة</a> -->
   </div>
 </nav>
 
 
-<div class="container-fluid scrollitem">
+
+
+<div >
+    <img src="cover.jpg" width="100%">
+</div>
+
+
+<div class="container">
+
+<div class="row mt-3">
+
+	<div class="col-md-3 center-aligen">
+		<a title="إتصالات" onclick="setActiveCompany('Etisalat')" href="#">
+			<img src="etisalat.png" width="200px" heigth="200px">
+		</a>
+	</div>
+
+	<div class="col-md-3 center-aligen">
+		<a title="اورنج" onclick="setActiveCompany('Orange')" href="#">
+			<img src="orange.png"  width="200px" heigth="200px">
+		</a>
+	</div>
+
+	<div class="col-md-3 center-aligen">
+		<a title="وى" onclick="setActiveCompany('We')" href="#">
+			<img src="we.png" width="200px" heigth="200px">
+		</a>
+	</div>
+
+	<div class="col-md-3 center-aligen">
+		<a title="فودافون" onclick="setActiveCompany('Vodafone')" href="#">
+			<img src="vodafone.png" width="200px" heigth="200px">
+		</a>
+	</div>
+
+</div>
+
+
+<div class="scrollitem">
   <div class="row">
 		<div class="col" id='col1'></div>
 		<div class="col" id='col2'></div>
-		<div class="col" id='col3'></div>
   </div>
 </div>
 
 
+
+
 <div class="logo">
 	<a href="index.html">
-			<img src="logo.png" height="60px">
+			<img src="logo.jpg" height="60px">
 	</a>
 </div>
 
 <div class="logo-text">
-	<a class="form-inline my-2 my-lg-0" href="index.html">أرقام مميزة</a>
+	<a class="form-inline my-2 my-lg-0" href="index.html" style="font-size: 30px;">VIP نــمــرتــى</a>
 </div>
 
 
 
-
+<!--
 <div class="facebook_page">
-    <a target="_blank" href="#">
+    <a target="_blank" href="https://www.facebook.com/%D9%86%D9%85%D8%B1%D8%AA%D9%89-Vip-244221292385859/">
         <img src="facebook.png" height="80px">
     </a>
 </div>
-
+-->
 
 
 
 <div class="footer navcolor pt-2">
-  <p>للإستعلام برجاء التواصل على: 01282687520</p>
+  <p>للإستعلام برجاء التواصل على: 01000000140</p>
 </div>
 
-
+</div>
 
 
 
