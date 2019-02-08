@@ -1,7 +1,7 @@
 var config = {
-    apiKey: "AIzaSyDsPtVdNNbBZGXwTW2x61z7Y4ZrUn9PWMY",
-    authDomain: "special-numbers.firebaseapp.com",
-    databaseURL: "https://special-numbers.firebaseio.com/",
+    apiKey: "AIzaSyCiKxvAk3jiMZ4jp5tTlHp8oH-TjFyk86s",
+    authDomain: "special-number.firebaseapp.com",
+    databaseURL: "https://special-number.firebaseio.com/",
 };
 // storageBucket: "bucket.appspot.com"
 firebase.initializeApp(config);
@@ -46,7 +46,7 @@ function setActiveCompany(who){
 function writeNumber(number){
     const provider = number.substring(0,3)
     console.log(provider);
-    const providerMatcher = {'011': 'T_Etisalat', '015': 'T_We', '010': 'T_Vodafone', '012': 'T_Orange'}
+    const providerMatcher = {'011': 'Etisalat', '015': 'We', '010': 'Vodafone', '012': 'Orange'}
     // console.log(providerMatcher['011']);
     let type = ['vip', 'special'][Math.floor(Math.random() * 2)]; // rand int from 0 to 3
     key = providerMatcher[provider] + '-' + type
@@ -56,13 +56,13 @@ function writeNumber(number){
 
 async function fetchPhoneNumbers(company, type){
     let availableNumbers = []
-    phonesSH = await database.ref(`/T_${company}-${type}`).once('value')
+    phonesSH = await database.ref(`/${company}-${type}`).once('value')
     phonesSH.forEach(phoneSH => {
         phone = phoneSH.key
         status = phoneSH.val()
         // console.log(phone);            
         // console.log(status);
-        if(status !== 'Available') return
+        if(status.toUpperCase() !== 'available'.toUpperCase()) return
         availableNumbers.push({val:phone, vip:type==='vip'})
     });
     return availableNumbers
