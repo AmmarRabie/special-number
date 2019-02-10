@@ -1,71 +1,49 @@
 import requests
 import data_handler as dh
-VERIFY_TOKEN = 'testbotverifytoken'
-# deek om token with auto comment token
-PAGE_TOKEN = "EAAcpGsFBqk0BAFy0WZCMOv7DczpsRY0v8HByDRg8sh0t7qa7RvGO5PS2Ty9lZCn6iRKnt4f9UuYOvRyZCtFDw9q5KNCUaO8HlaDyJTAGlLgivbwGMnEdcIRAEfyKhu5PVUdZBeJWkcqgS9U8EATIGJMvTeA4iMXsEVPzp8MnoQZDZD"
+from internet_status import internet 
+# chatbot tester with auto comment token
+PAGE_TOKEN = "EAAcpGsFBqk0BACGZAWHdnuMTPfzFY4UsKYSG3ObiZAAFfZBa1P3H23YSro9E1v3Ag2l2IKpSPx7o4o0wTh1gPZAnauqqUqEzh7MFfuZCMcJSTROHQG5jzDBB3FwkLUCDZBGwHIZBTStnhi1MPUgGwE0Ns56Kp4LaZBIR3RUMIiOe6wZDZD"
 
-# deek om token with another app
-# PAGE_TOKEN = "EAADDhm1BDK0BACCapgrzH76ZC8ae0VvAYN4AONFTX4PGWNvicgBZBvSrBALtgU1aZACJb382mmgZAFkRWmkEkicFx3FJD5ZB0TQxaWOvM1LfYZB7nLl6sHs3BX249PObTy5fTZAYaQVBG5L2qohDIvVWl8T2UzEbY6yCUjQckTA4aESZCeHeWpLnAGrcXTDOol6UjOCZCJHnGdQZDZD"
-
-# sherif token
-# PAGE_TOKEN = "EAAFwsfhHYM0BALZBbyJuHwDm3vdZA0RiThI5ZAiZBlgbeg8eOMXmreQkujoKI6rLPd2q3UNrsVoY8Tq3c8qSUX3zfr7ns3ONQaBCKuZAGCtSbPOesR9DSRZCdp0NarVXQ0BaxLcOnCH0yq4aM2jQL3TzklpzYgKrDjslzfJVvRDgZDZD"
-PAGE_ID = "330714580357868" # deek om elthanwya
+PAGE_ID = "1229774243814128" # chatbot tester
 
 
-def getObjectComments(objectId):
-    url = "https://graph.facebook.com/v3.2/{}/comments?access_token={}".format(objectId, PAGE_TOKEN)
+COMMENT_ALREADY_REPLIED_CODE = 10900
+
+
+def getObjectComments(objectId, limit=100):
+    url = "https://graph.facebook.com/v3.2/{}/comments?order=reverse_chronological&limit={}&access_token={}".format(objectId, limit, PAGE_TOKEN)
     res = requests.get(url)
     if(not res.ok):
+        print(res.json())
         raise Exception('not valid request', url)
     # TODO: Loop here in all paging then return the whole data
-    return res.json()['data']
+    return res.json()["data"]
 
-
-def isPageReplied(replyes):
-    for reply in replyes:
-        if(reply['from']['id'] == PAGE_ID):
-            return True
-    return False
-def replyToNewPostComments(postId, commentMessage, privateMessage):
-    postComments = getObjectComments(postId)
+def replyToNewPostComments(postId, privateMessage):
+    # TODO: update to use paging, fetch 20 comments, if there is all not replied fetch the second 20 comments and so on till comments end or you get comment which is already replied
+    postComments = getObjectComments(postId) # sorted by created time, and limit is infinite
     for comment in postComments:
-        # print(comment)
         commentId = comment['id']
-        replyes = getObjectComments(commentId)
-        if(isPageReplied(replyes)):
-            continue
-        sendPrivateMessageTo("1952794271513237", privateMessage)
-        if(comment.get('from')):
-            print(comment['from']['name'])
-            if(comment['from']['name'] == "Chatbot tester"):
-                continue
-            senderId = comment["from"]["id"]
-            sendPrivateMessageTo("1952794271513237", privateMessage)
-            # print(senderId)
-            # commentOn(commentId, commentMessage)
-        else:
-            print("comment does not have from")
-def commentOn(objetcId, message):
-    url = "https://graph.facebook.com/v3.2/{}/comments?access_token={}&message={}".format(objetcId, PAGE_TOKEN, message)
-    res = requests.post(url)
-    print('comment on status code', res.status_code)
-    if(not res.ok):
-        print(url, res.json())
-        raise Exception('invalid request with comment on' + ' status code ' + str(res.status_code))
-    return True
+        success, errorCode = replyPrivately(commentId, privateMessage)
+        if(not success and errorCode == COMMENT_ALREADY_REPLIED_CODE):
+            break # you don't need to loop over other older comments as this is already
 
-def sendPrivateMessageTo(userId, message):
-    url = "https://graph.facebook.com/v3.2/me/messages?access_token={}".format(PAGE_TOKEN)
-    body = { "recipient": { "id": userId},"message": {"text": message}}
-    res = requests.post(url, json=body)
-    print('sendPrivateMessageTo status', res.status_code)
+
+def replyPrivately(commentId, message):
+    url = "https://graph.facebook.com/v3.2/{}/private_replies?message={}&access_token={}".format(commentId, message, PAGE_TOKEN)
+    res = requests.post(url)
+    print('replyPrivately status', res.status_code)
     if(not res.ok):
         print(res.json())
+        return False, res.json()['error']['code']
+    return True, 200
 
 if __name__ == '__main__':
+    if(not internet()):
+        raise Exception("No internet connection")
     postsIds = dh.getRegisteredPosts()
     for postId in postsIds:
         info = dh.getPostData(postId)
-        comment = "تم الرد علي الخاص بالسعر"
+        # comment = "تم الرد علي الخاص بالسعر"
         privateMessage = "سعر الرقم {} يساوي {}..".format(info['phone'], info['price'])
-        replyToNewPostComments(postId, comment, privateMessage)
+        replyToNewPostComments(postId, privateMessage)
