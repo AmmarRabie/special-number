@@ -1,5 +1,4 @@
 import requests
-from requests.models import Response
 import json
 from flask import Flask, request, make_response
 from datetime import datetime
@@ -7,9 +6,9 @@ app = Flask(__name__)
 
 VERIFY_TOKEN = 'testbotverifytoken'
 #Insert facebook token here, this an non-expired token
-PAGE_TOKEN = "EAAcpGsFBqk0BAMtgcg9JwT3jNgfoYCNz8FuZA4R4JsfHEaybqG7ghLGe03BePxzG01IskKI9Th5ZAdNTbZAnxQ19rfPh4vDanlCp5pE1iS1C59Wp5lmFOkgWxmNZBJHZAuwBQ6RfbA156puQ9kQwPidZAlaMfnhaZAdvbmKZAnlnrmNNcyAjcSG2"
+PAGE_TOKEN = "EAAcpGsFBqk0BAAq2NStGNyU5BYXk5MprYZC4ZAlJKCG2CPxpm3TQ3xeKpBopKc92DDkc7m4Ywq0ouHLFzZBgfy1SHDxLEPZCa5fAMAILn81c1tFyEEoKhG3sFilgU6OlSXZCmXiyZA0KxIiMGzIcdPqmZCH53MOJDq7F4U7XcM4FQZDZD"
 
-PAGE_ID = "330714580357868" # deek om elthanwya
+PAGE_ID = "1229774243814128" # chatbot tester
 
 @app.route('/', methods=["GET", "POST"])
 def index():
@@ -95,6 +94,16 @@ if __name__ == "__main__":
     app.run()
     # posts = get_posts()
     # comment_on_posts(posts, 25)
+
+
+def replyPrivately(commentId, message):
+    url = "https://graph.facebook.com/v3.2/{}/private_replies?message={}&access_token={}".format(commentId, message, PAGE_TOKEN)
+    res = requests.post(url)
+    print('replyPrivately status', res.status_code)
+    if(not res.ok):
+        print(res.json())
+        return False, res.json()['error']['code']
+    return True, 200
 
 def comment_on_posts(posts, amount):
     counter = 0
