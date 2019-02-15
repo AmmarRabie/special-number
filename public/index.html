@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<link rel="shortcut icon" href="images/favicon.jpg" type="image/x-icon" />
+	<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.8.1/firebase-database.js"></script>
+	<style>
+		.mycard{
+			width: 18rem; 
+			margin-top: 20px; 
+			padding-top: 15px; 
+			padding-bottom: 15px;
+			background-color:#649600;
+		}
+
+		.navcolor{
+			background-color:black;
+		}
+
+		.footer {
+		   position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		   color: black;
+		   text-align: center;
+		   height: 45px;
+		}
+
+		.drop-item{
+			margin-left: 10px;
+		}
+
+		.scrollitem{
+			overflow-y: auto;
+			padding-bottom: 55px;
+		}
+
+		.Vodafone{
+			background-color: #c80000;
+		}
+
+		.Etisalat{
+			background-color: #649600;
+		}
+
+		.Orange{
+			background-color: #fa5000;
+		}
+
+		.We{
+			background-color: #781e82; 
+		}
+
+
+		.facebook_page {
+		    position: fixed;
+		    right: 45px;
+		    bottom: 45px;
+		    width: 40px;
+			opacity: 0.8;
+		}
+
+
+		.logo {
+		    position: absolute;
+		    right: 45px;
+		    top: 7px;
+		    width: 45px;
+		}
+
+		.logo-text
+		{
+			position: absolute;
+		  right: 110px;
+		  top: 12px;
+		  width: auto;
+		}
+
+		.card {
+			position:relative;
+		}
+			
+		.card .card-badge {
+			position:absolute;
+			top:-10px;
+			left:-20px;
+			padding:5px;
+			background:darkslategrey;
+			color:white;
+			transform:rotate(-30deg);
+		}
+
+		a{
+			color: white;
+		}
+
+		h5{
+			color: white;
+		}
+
+		p{
+			color: white;
+		}
+
+		a:hover{
+			color: gold !important;
+			text-decoration: none !important;
+		}
+
+	</style>
+	<title>نمرتي vip ارقام مميزة</title>
+</head>
+
+
+
+<body onload="setContactInfo();update();">
+
+	<nav class="navbar navbar-expand-lg navbar-light navcolor pt-4 pb-4">
+
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		 aria-controls="navbarSupportedContent" aria-expanded="false" style="color: white;" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span> القائمة الرئيسية
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+
+
+				<li class="nav-item dropdown ml-5">
+					<a class=" dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						اتصل بنا
+					</a>
+					<div class="dropdown-menu navcolor" style="width: 100px;" aria-labelledby="navbarDropdown">
+
+						<div class="row">
+							<img class="col-4" src="images/facebook.png" height="40px" width="40px">
+							<a class="dropdown-item col-8" style="color: white;" target="_blank" href="https://www.facebook.com/%D9%86%D9%85%D8%B1%D8%AA%D9%89-Vip-244221292385859/">facebook</a>
+						</div>
+
+						<div class="row">
+							<img class="col-4" src="images/whatsapp.png" height="40px" width="40px">
+							<a class="dropdown-item col-8" style="color: white;" target="_blank" href="https://api.whatsapp.com/send?phone=201000000140&text=&source=&data=">whatsapp</a>
+						</div>
+					</div>
+				</li>
+
+
+				<li class="nav-item active">
+					<a class="ml-5" id="orangeAnchor" onclick="setActiveCompany('Orange')" href="#">Orange اورانج</a>
+				</li>
+
+
+				<li class="nav-item">
+					<a class="ml-5" id="vodafoneAnchor" onclick="setActiveCompany('Vodafone')" href="#">Vodafone فودافون</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="ml-5" id="weAnchor" onclick="setActiveCompany('We')" href="#">We وى</a>
+				</li>
+
+				<li class="nav-item">
+					<a class="ml-5" id="etisalatAnchor" onclick="setActiveCompany('Etisalat')" href="#">Etisalat اتصالات</a>
+				</li>
+
+			</ul>
+
+		</div>
+	</nav>
+	<div>
+		<img src="images/cover.jpg" width="100%">
+	</div>
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-md-3 center-aligen">
+				<a title="إتصالات" onclick="setActiveCompany('Etisalat')" href="#">
+					<img src="images/etisalat.png" width="200px" heigth="200px">
+				</a>
+			</div>
+
+			<div class="col-md-3 center-aligen">
+				<a title="اورنج" onclick="setActiveCompany('Orange')" href="#">
+					<img src="images/orange.png" width="200px" heigth="200px">
+				</a>
+			</div>
+
+			<div class="col-md-3 center-aligen">
+				<a title="وى" onclick="setActiveCompany('We')" href="#">
+					<img src="images/we.png" width="200px" heigth="200px">
+				</a>
+			</div>
+
+			<div class="col-md-3 center-aligen">
+				<a title="فودافون" onclick="setActiveCompany('Vodafone')" href="#">
+					<img src="images/vodafone.png" width="200px" heigth="200px">
+				</a>
+			</div>
+
+		</div>
+
+		<div id="speciality_div" class="dropdown center-align mt-5">
+			<button class="btn btn-dark dropdown-toggle" type="button" id="speciality" data-toggle="dropdown" aria-haspopup="true"
+			 aria-expanded="false">
+				الــكل
+			</button>
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" href="#" onclick="setActiveFilter('vip')">VIP</a>
+				<a class="dropdown-item" href="#" onclick="setActiveFilter('special')">ممــيزة</a>
+				<a class="dropdown-item" href="#" onclick="setActiveFilter('all')">الــكل</a>
+			</div>
+		</div>
+
+		<div class="scrollitem">
+			<div class="row">
+				<div class="col" id='col1'></div>
+				<div class="col" id='col2'></div>
+			</div>
+		</div>
+
+
+		<div class="logo">
+			<a href="index.html">
+				<img src="images/logo.jpg" height="60px">
+			</a>
+		</div>
+
+		<div class="logo-text">
+			<a class="form-inline my-2 my-lg-0" href="index.html" style="font-size: 30px; color: gold;">VIP نــمــرتــى</a>
+		</div>
+		<div class="footer navcolor pt-2">
+			<p id='contact_info'>للإستعلام برجاء التواصل على: 01000000140</p>
+		</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+	 crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	 crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	 crossorigin="anonymous"></script>
+	<script src="js/index.js"></script>
+
+</body>
+
+</html>
