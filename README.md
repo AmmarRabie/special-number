@@ -1,6 +1,6 @@
-#What is this
+# What is this
 This is branch for the website using only html, js and cs without any frameworks.
-#How to deploy
+# How to deploy
 You have to setup firebase command line interface tools.
 use this to install it using NodeJs package manger npm.
 `npm install -g firebase-tools`
