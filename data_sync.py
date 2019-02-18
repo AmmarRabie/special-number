@@ -1,15 +1,16 @@
 from openpyxl import workbook, worksheet
 from requests import get
+from json import loads
 from time import strftime
 from shutil import copyfile, move
 
 COLUMN_WIDTH = 50
 
-adminAuth = "HeX8MhN7PIJhQaTKwZhc1Ty4v6isPHEMk0pCBXs7"
-basePath = "https://special-number.firebaseio.com"
+config = loads(open("config.json").read())
 
-adminAuth = "O81ngjXyK242vRvWzBypVTbKyg9sbjflMoA3luoN"
-basePath = "https://shaikh-sha3ban.firebaseio.com"
+adminAuth = config["database secret"]
+basePath = config["database base url"]
+
 
 fileName = strftime("%Y%m%d-%H")
 try:
