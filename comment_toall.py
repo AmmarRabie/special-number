@@ -1,14 +1,15 @@
 import requests
 import data_handler as dh
-from internet_status import internet 
-# chatbot tester with auto comment token
-PAGE_TOKEN = "EAAcpGsFBqk0BACGZAWHdnuMTPfzFY4UsKYSG3ObiZAAFfZBa1P3H23YSro9E1v3Ag2l2IKpSPx7o4o0wTh1gPZAnauqqUqEzh7MFfuZCMcJSTROHQG5jzDBB3FwkLUCDZBGwHIZBTStnhi1MPUgGwE0Ns56Kp4LaZBIR3RUMIiOe6wZDZD"
+from internet_status import internet
+from json import loads
 
-PAGE_ID = "1229774243814128" # chatbot tester
+config = loads(open("config.json").read())['test']
+
+PAGE_TOKEN = config["page access token"]
+PAGE_ID = config["page id"]
 
 
 COMMENT_ALREADY_REPLIED_CODE = 10900
-
 
 def getObjectComments(objectId, limit=100):
     url = "https://graph.facebook.com/v3.2/{}/comments?order=reverse_chronological&limit={}&access_token={}".format(objectId, limit, PAGE_TOKEN)
@@ -26,6 +27,8 @@ def replyToNewPostComments(postId, privateMessage):
         commentId = comment['id']
         success, errorCode = replyPrivately(commentId, privateMessage)
         if(not success and errorCode == COMMENT_ALREADY_REPLIED_CODE):
+            continue
+            # this assumption is not valid now after adding auto comment reply
             break # you don't need to loop over other older comments as this is already
 
 
@@ -44,6 +47,8 @@ if __name__ == '__main__':
     postsIds = dh.getRegisteredPosts()
     for postId in postsIds:
         info = dh.getPostData(postId)
-        # comment = "تم الرد علي الخاص بالسعر"
-        privateMessage = "سعر الرقم {} يساوي {}..".format(info['phone'], info['price'])
+        privateMessage = info['message']
+        if(info['message'].strip() == ''):
+            privateMessage = f"سعر الرقم \n {info['phone']} \n {info['price']} جنيه"
+        privateMessage += "\n\n" + "لمزيد من الأرقام المميزة زور موقعنا" + "\n" + "https://nemrtyvip.com"
         replyToNewPostComments(postId, privateMessage)

@@ -1,5 +1,14 @@
 '''
-    This is for google cloud functions version
+    This file made to match google cloud functions version
+
+    To make an auto private comment reply, we need two facebook apps
+    one for "auto" and second is for "comment reply"
+    to make an auto respond this means "webhook" => and to enable webhook for interactions you must have an "live app"
+    to make a private reply you have to have an access token with publish_pages permission, to get this you make your app in development mode or go through app review
+    so we have an app with webhook in live mode, and have another app with its access token in development mode
+    please note that, if you want to make a comment and to be shown to the people you need a token with permissions associated with live app (meaning that you have to go through app review)
+
+    This file is for commenter, deploy the code and get the url to register to the webhook (this should be done through live app)
 '''
 from requests import post, get
 
