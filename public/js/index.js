@@ -27,7 +27,13 @@ async function update() {
         numbers = await fetchPhoneNumbers(activeCompany, activeFilter)
     }
     displayNumbers(numbers)
-    document.getElementById('speciality_div').scrollIntoView();
+    animateToNumbers()
+    // document.getElementById("company-selectors-container").scrollTo();
+}
+
+function animateToNumbers() {
+    intervalId = setInterval(() => window.scrollBy(0, 10), 10)
+    setTimeout(() => clearInterval(intervalId), 1000)
 }
 
 function setActiveFilter(who) {
@@ -46,8 +52,6 @@ async function fetchPhoneNumbers(company, type) {
     phonesSH.forEach(phoneSH => {
         phone = phoneSH.key
         status = phoneSH.val()
-        // console.log(phone);            
-        // console.log(status);
         if (status.toUpperCase() !== 'available'.toUpperCase()) return
         availableNumbers.push({ val: phone, vip: type === 'vip' })
     });
@@ -82,7 +86,7 @@ function resetAnchColors() {
 }
 
 function changeAnchorColor() {
-    const idMapper = {Orange: "orangeAnchor", Etisalat: "etisalatAnchor", Vodafone: "vodafoneAnchor", We: "weAnchor"}
+    const idMapper = { Orange: "orangeAnchor", Etisalat: "etisalatAnchor", Vodafone: "vodafoneAnchor", We: "weAnchor" }
     document.getElementById(idMapper[activeCompany]).style.color = highlight
 }
 

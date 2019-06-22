@@ -6,13 +6,39 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-134697086-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
+		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
 		gtag('config', 'UA-134697086-1');
 	</script>
-
 	<meta name="description" content="نمرتى VIP ... من اكبر المواقع المميزة فى مصر حيث تجد افضل الارقام واكثرها تميزا لجميع الشبكات فى مصر">
 	<meta name="keywords" content="ارقام, ارقام مميزة, ارقام مميزة للبيع, فودافون, اتصالات, وى, اورنج, موبينيل, we, ارقام VIP, بيع وشراء ارقام مميزة, مصر, شبكات اتصالات, اسعار متميز’">
+
+
+	<!-- Global site tag (gtag.js) - Google Ads: 763186866 -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-763186866"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'AW-763186866');
+	</script>
+	<!-- Event snippet for what&#39;s app conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+	<script>
+		function gtag_report_conversion(url) {
+			var callback = function () {
+				if (typeof (url) != 'undefined') {
+					window.location = url;
+				}
+			};
+			gtag('event', 'conversion', {
+				'send_to': 'AW-763186866/ZvijCNrhi6MBELKd9esC',
+				'event_callback': callback
+			});
+			return false;
+		}
+	</script>
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous">
@@ -27,11 +53,9 @@
 			padding-bottom: 15px;
 			background-color:#649600;
 		}
-
 		.navcolor{
 			background-color:black;
 		}
-
 		.footer {
 		   position: fixed;
 		   left: 0;
@@ -41,7 +65,6 @@
 		   text-align: center;
 		   height: 45px;
 		}
-
 		.drop-item{
 			margin-left: 10px;
 		}
@@ -66,8 +89,6 @@
 		.We{
 			background-color: #781e82; 
 		}
-
-
 		.facebook_page {
 		    position: fixed;
 		    right: 45px;
@@ -75,15 +96,12 @@
 		    width: 40px;
 			opacity: 0.8;
 		}
-
-
 		.logo {
 		    position: absolute;
 		    right: 45px;
 		    top: 7px;
 		    width: 45px;
 		}
-
 		.logo-text
 		{
 			position: absolute;
@@ -91,11 +109,9 @@
 		  top: 12px;
 		  width: auto;
 		}
-
 		.card {
 			position:relative;
-		}
-			
+		}	
 		.card .card-badge {
 			position:absolute;
 			top:-10px;
@@ -105,11 +121,9 @@
 			color:white;
 			transform:rotate(-30deg);
 		}
-
 		a{
 			color: white;
 		}
-
 		h5{
 			color: white;
 		}
@@ -121,6 +135,42 @@
 		a:hover{
 			color: gold !important;
 			text-decoration: none !important;
+		}
+
+		.whatsapp-mes {
+			position: fixed;
+			right: 120px;
+			bottom: 20px;
+			transition: all 0.2s ease;
+			width: 80px;
+		}
+
+		.whatsapp-mes img {
+			width: 80px;
+			border-radius: 100%;
+			height: 80px;
+		}
+		.whatsapp-mes:hover{
+			width: 90px;
+			right: 115px;
+			bottom: 17px;
+		}
+		.fb-mes {
+			position: fixed;
+			right: 30px;
+			bottom: 20px;
+			transition: all 0.2s ease;
+			width: 83px;
+		}
+		.fb-mes img {
+			width: 83px;
+			border-radius: 100%;
+			height: 83px;
+		}
+		.fb-mes:hover{
+			width: 90px;
+			right: 25px;
+			bottom: 17px;
 		}
 
 	</style>
@@ -186,7 +236,7 @@
 		<img src="images/cover.jpg" width="100%">
 	</div>
 	<div class="container">
-		<div class="row mt-3">
+		<div id="company-selectors-container" class="row mt-3">
 			<div class="col-md-3 center-aligen">
 				<a title="إتصالات" onclick="setActiveCompany('Etisalat')" href="#">
 					<img src="images/etisalat.png" width="200px" heigth="200px">
@@ -245,7 +295,16 @@
 		<div class="footer navcolor pt-2">
 			<p id='contact_info'>للإستعلام برجاء التواصل على: 01000000140</p>
 		</div>
-
+		<div class="whatsapp-mes">
+			<a onclick="return gtag_report_conversion('https://api.whatsapp.com/send?phone=201000000140')" target="_blank" href="https://api.whatsapp.com/send?phone=201000000140">
+				<img src="images/whatsapp.png">
+			</a>
+		</div>
+		<div class="fb-mes">
+			<a target="_blank" href="https://www.facebook.com/%D9%86%D9%85%D8%B1%D8%AA%D9%89-Vip-244221292385859/">
+				<img src="images/logo-facebook.png">
+			</a>
+		</div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -255,7 +314,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	 crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>
-
 </body>
 
 </html>
